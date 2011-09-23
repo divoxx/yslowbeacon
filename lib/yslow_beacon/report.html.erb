@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Report for <%= @page.url %></title>
+  </head>
+  <body>
+    <h1>Report for <%= @page.url %></h1>
+    <h2>Grade <%= @page.grade %> / Score: <%= @page.score %></h2>
+
+    <h3>Scores</h3>
+    <ul>
+      <% for score in @page.scores %>
+        <li><%= score.name %> (<%= score.score %>)</li>
+      <% end %>
+    </ul>
+  </body>
+</html>
+

@@ -1,0 +1,5 @@
+require "yslow_beacon/request"
+require "yslow_beacon/page"
+require "yslow_beacon/asset"
+require "yslow_beacon/score"
+require "yslow_beacon/receiver"
