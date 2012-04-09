@@ -16,10 +16,11 @@ module YSlowBeacon
 
       Array(req.params['comps']).each do |comp|
         @page.assets << Asset.new(
-          :asset_type => comp['type'],
-          :url        => CGI.unescape(comp['url']),
-          :size       => comp['size'],
-          :load_time  => comp['resp']
+          :asset_type  => comp['type'],
+          :url         => CGI.unescape(comp['url']),
+          :size        => comp['size'],
+          :load_time   => comp['resp'],
+          :gziped_size => comp['gzip']
         )
       end
 

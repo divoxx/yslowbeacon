@@ -13,6 +13,13 @@
         <li><%= score.name %> (<%= score.score %>)</li>
       <% end %>
     </ul>
+
+    <h3>Assets</h3>
+    <ul>
+      <% for asset in @page.assets %>
+        <li><%= asset.url %> (<%= asset.load_time %>ms; <%= asset.size %> bytes; <%= asset.gziped_size %> gziped)</li>
+      <% end %>
+    </ul>
   </body>
 </html>
 
