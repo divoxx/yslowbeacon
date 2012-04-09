@@ -11,16 +11,18 @@ module YSlowBeacon
         :score        => req.params['o'],
         :num_requests => req.params['r'],
         :load_time    => req.params['lt'],
-        :url          => CGI.unescape(req.params['u'])
+        :url          => req.params['u'],
+        :friendly_url => CGI.unescape(req.params['u'])
       )
 
       Array(req.params['comps']).each do |comp|
         @page.assets << Asset.new(
-          :asset_type  => comp['type'],
-          :url         => CGI.unescape(comp['url']),
-          :size        => comp['size'],
-          :load_time   => comp['resp'],
-          :gziped_size => comp['gzip']
+          :asset_type   => comp['type'],
+          :url          => comp['url'],
+          :friendly_url => CGI.unescape(comp['url']),
+          :size         => comp['size'],
+          :load_time    => comp['resp'],
+          :gziped_size  => comp['gzip']
         )
       end
 
@@ -28,7 +30,7 @@ module YSlowBeacon
         @page.scores << Score.new(:name => name, :score => score['score'], :info => score['components'])
       end
 
-      File.open("tmp/output.html", "w") do |f| 
+      File.open("tmp/#{@page.url}.html", "w") do |f| 
         tpl = File.dirname(__FILE__) + "/report.html.erb"
         erb = Erubis::Eruby.new(File.read(tpl))
         f.write(erb.result(binding))
